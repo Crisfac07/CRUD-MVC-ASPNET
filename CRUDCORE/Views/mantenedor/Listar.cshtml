@@ -1,0 +1,52 @@
+﻿@model List<ContactoModel> 
+
+@{
+    ViewData["Title"] = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Crear contacto
+    </div>
+    <div class="card-body">
+
+        <form asp-action="Guardar" asp-controller="mantenedor" method="post">
+            
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Nombre</td>
+                            <td>@item.Telefono</td>
+                            <td>@item.Correo</td>
+                            <td>
+                                <a class="btn btn-success" asp-action="Editar" asp-controller="mantenedor" asp-route-IdContacto="@item.IdContacto">Editar</a>
+                                <a class="btn btn-danger" asp-action="Eliminar" asp-controller="mantenedor" asp-route-IdContacto="@item.IdContacto">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <hr />
+
+            <div class="mb-3">
+                <a class="btn btn-success" asp-action="Guardar" asp-controller="mantenedor">Crear Nuevo</a>
+                
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
